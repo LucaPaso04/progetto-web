@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="it">
-        <?php
-            $titolo = "Homepage";
-            include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/header.php');
-        ?>
+    <!--Header template-->
+    <?php
+        $titolo = "Homepage";
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/header.php');
+    ?>
+    <!--BODY-->
 
-        <?php
-            include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php');
-        ?>
+    <!--/BODY-->
+    <!--Footer template-->
+    <?php
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php');
+    ?>
 </html>

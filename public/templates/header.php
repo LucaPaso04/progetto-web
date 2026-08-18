@@ -27,6 +27,9 @@
                         </li>
                     </ul>
                     <div class="ms-auto">
+                        <button class="btn btn-outline-secondary btn-sm" id="btn-profile" type="button">
+                            <i class="bi bi-person-square"></i>
+                        </button>
                         <button class="btn btn-outline-secondary btn-sm" id="btn-theme-toggle" type="button">
                             <i class="bi bi-moon-fill" id="theme-icon"></i>
                         </button>
