@@ -9,6 +9,7 @@ Le tabelle scelte per il database del progetto sono le seguenti:
 **User**
 - id_user (PK)
 - friend_code (UNIQUE)
+- username (UNIQUE)
 - name
 - surname
 - mail (UNIQUE)
