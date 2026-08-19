@@ -1,23 +1,25 @@
 <?php
     session_start();
 
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/config/db.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/config/database.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/config/functions.php');
+
+    // Check if user is logged in
+    requireLogin();
 
     // Get user session id
-    $id_user = $_SESSION['user_id'] ?? null;
+    $id_user = getLoggedUserId();
 
-    // Get user matches ordered by date and hour
-    $stmt = $pdo->prepare("SELECT m.*, p.team FROM `match` m JOIN `partecipation` p ON m.id_match = p.id_match WHERE p.id_user = ? ORDER BY m.date ASC, m.hour ASC");
-    $stmt->execute([$id_user]);
-    $partite = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Get all matches, team and host username ordered by match date and hour
+    $partite = getAllMatches();
 ?>
 
 <!DOCTYPE html>
 <html lang="it">
     <!--Header template-->
     <?php
-    $titolo = "Homepage";
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/header.php');
+        $titolo = "Homepage";
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/header.php');
     ?>
     <!--BODY-->
 
@@ -38,6 +40,6 @@
     <!--/BODY-->
     <!--Footer template-->
     <?php
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php');
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/footer.php');
     ?>
 </html>
