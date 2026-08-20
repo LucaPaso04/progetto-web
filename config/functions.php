@@ -36,7 +36,7 @@ function hasRole(string $role): bool
 
 // Database functions
 
-function getAllMatches(): array
+function getAllMatches(mysqli $conn): array
 {
     $sql = "
         SELECT m.*, p.team, u.username AS host_username
@@ -52,6 +52,38 @@ function getAllMatches(): array
         die("Errore nella preparazione: " . $conn->error);
     }
 
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $matches = $result->fetch_all(MYSQLI_ASSOC);
+
+    $stmt->close();
+
+    return $matches;
+}
+
+function getUserMatches(mysqli $conn, int $userID) : array
+{
+    if ($userID == null || $userID <= 0) {
+        return [];
+    }
+
+    $sql = "
+        SELECT m.*, p.team, u.username AS host_username
+        FROM `match` AS m
+        JOIN partecipation AS p ON m.id_match = p.id_match
+        JOIN `user` AS u ON m.id_host = u.id_user
+        WHERE p.id_user = ?
+        ORDER BY m.date ASC, m.hour ASC
+    ";
+
+    $stmt = $conn->prepare($sql);
+
+    if (!$stmt) {
+        die("Errore nella preparazione: " . $conn->error);
+    }
+
+    $stmt->bind_param("i", $userID);
     $stmt->execute();
 
     $result = $stmt->get_result();

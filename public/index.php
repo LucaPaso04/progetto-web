@@ -2,10 +2,12 @@
 <html lang="it">
     <!--Header template-->
     <?php
-        $titolo = "Homepage";
+        $titolo = "Welcome";
         include_once($_SERVER['DOCUMENT_ROOT'] . '/templates/header.php');
     ?>
     <!--BODY-->
+
+    <h1>Pagina di Login</h1>
 
     <!--/BODY-->
     <!--Footer template-->
