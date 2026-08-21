@@ -39,7 +39,7 @@ function hasRole(string $role): bool
 function getAllMatches(mysqli $conn): array
 {
     $sql = "
-        SELECT m.*, p.team, u.username AS host_username
+        SELECT m.*, p.team, u.username AS host_username, p.id_user AS id_user
         FROM `match` AS m
         JOIN partecipation AS p ON m.id_match = p.id_match
         JOIN `user` AS u ON m.id_host = u.id_user
@@ -69,7 +69,7 @@ function getUserMatches(mysqli $conn, int $userID) : array
     }
 
     $sql = "
-        SELECT m.*, p.team, u.username AS host_username
+        SELECT m.*, p.team, u.username AS host_username, p.id_user AS id_user
         FROM `match` AS m
         JOIN partecipation AS p ON m.id_match = p.id_match
         JOIN `user` AS u ON m.id_host = u.id_user
